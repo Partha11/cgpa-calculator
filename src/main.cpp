@@ -1,5 +1,6 @@
 #include <iostream>
-#include "data.h"
+#include <conio.h>
+#include "include/data.h"
 
 using namespace std;
 
@@ -12,7 +13,7 @@ int main()
 
 		UserData ud;
 
-		system("clear");
+		system("cls");
 
 		ud.welcome();
 
@@ -23,7 +24,7 @@ int main()
 
 		if (ch == 'n') {
 
-			system("clear");
+			system("cls");
 			ud.welcome();
 
 			break;

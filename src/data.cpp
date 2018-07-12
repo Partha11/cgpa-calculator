@@ -2,61 +2,62 @@
 #include <string>
 #include <cstdlib>
 #include <iomanip>
-#include <unistd.h>
+#include <windows.h>
 #include <fstream>
-#include <sys/ioctl.h>
 #include <cstdio>
-#include <termcolor/termcolor.hpp>
-#include "data.h"
+#include "include/termcolor.hpp"
+#include "include/data.h"
 
 UserData::UserData() {
 
-	totalObtained = 0;
+    system("mode con: cols=80 lines=30");
 
-    ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+    screenWidth = 80;
+
+	totalObtained = 0;
 
 	menu();
 }
 
 void UserData::welcome() {
 
-	system("clear");
+	system("cls");
 
 	std::cout.flush();
 
 	std::string str1 = "Welcome";
 	std::string str2 = "To CGPA Calculator";
 
-	loop(w.ws_col / 2 - (40 / 2), ' ');
+	loop(screenWidth / 2 - (40 / 2), ' ');
 	loop(40, '-');
 
 	std::cout << "\n";
-	
-	loop(w.ws_col / 2 - (40 / 2), ' ');
+
+	loop(screenWidth / 2 - (40 / 2), ' ');
 
 	std::cout << "-" << termcolor::on_grey;
-	
+
 	loop(19 - (str1.length() / 2), ' ');
 
 	std::cout << termcolor::blue << str1;
-	
+
 	loop(19 - (str1.length() / 2) - 1, ' ');
 
 	std::cout << termcolor::reset << "-\n";
 
-	loop(w.ws_col / 2 - (40 / 2), ' ');
+	loop(screenWidth / 2 - (40 / 2), ' ');
 
 	std::cout << "-" << termcolor::on_grey;
-	
+
 	loop(19 - (str2.length() / 2), ' ');
 
 	std::cout << termcolor::blue << str2;
-	
+
 	loop(19 - (str2.length() / 2), ' ');
 
 	std::cout << termcolor::reset << "-\n";
-	
-	loop(w.ws_col / 2 - (40 / 2), ' ');
+
+	loop(screenWidth / 2 - (40 / 2), ' ');
 	loop(40, '-');
 
 	std::cout << "\n\n\n\n";
@@ -112,10 +113,10 @@ int UserData::selectSemester() {
 
 	std::string tmpSem;
 
-	system("clear");
+	system("cls");
 	welcome();
 
-	std::cout << "Enter Semester = ";
+	std::cout << "Enter Semester (Eg. 3) = ";
 	std::cin >> tmpSem;
 
 	if (tmpSem[0] < '1' || tmpSem[0] > '8' || tmpSem.length() > 1) {
@@ -127,12 +128,12 @@ int UserData::selectSemester() {
 
 			std::cout << ".";
 			std::cout.flush();
-			usleep(500000);
+			Sleep(500);
 		}
 
-		system("clear");
+		system("cls");
 		tmpSem.erase(tmpSem.begin(), tmpSem.end());
-		
+
 		goto semSelection;
 	}
 
@@ -157,7 +158,7 @@ void UserData::loop(int n, char ch) {
 
 void UserData::subjectInput() {
 
-	system("clear");
+	system("cls");
 
 	int sem = selectSemester();
 
@@ -166,8 +167,8 @@ void UserData::subjectInput() {
 	std::string temp;
 	double tmp;
 
-	usleep(100000);
-	system("clear");
+	Sleep(1000);
+	system("cls");
 	welcome();
 
 	for (int i = 0; i < subjectNumber[sem - 1]; i++) {
@@ -226,25 +227,25 @@ void UserData::userSelection(int sem) {
 
 		std::cout << ".";
 		std::cout.flush();
-		usleep(500000);
+		Sleep(500);
 	}
 }
 
 void UserData::showSubjects() {
 
-	system("clear");
+	system("cls");
 	welcome();
 
 	int sem = selectSemester();
 
 	userSelection(sem);
 
-	system("clear");
+	system("cls");
 	welcome();
 
 	int l = maxLength();
 
-	loop(w.ws_col / 2 - l / 2 - 1, ' ');
+	loop(screenWidth / 2 - l / 2 - 1, ' ');
 
 	std::cout << "/";
 
@@ -254,7 +255,7 @@ void UserData::showSubjects() {
 
 	for (int i = 0, j = 0; i < subjectNumber[sem - 1] + practicalNumber[sem - 1]; i++) {
 
-		loop(w.ws_col / 2 - l / 2 - 1, ' ');
+		loop(screenWidth / 2 - l / 2 - 1, ' ');
 
 		std::cout << "| ";
 
@@ -282,10 +283,10 @@ void UserData::showSubjects() {
 			j++;
 		}
 
-		usleep(1000000);
+		Sleep(1000);
 	}
 
-	loop(w.ws_col / 2 - l / 2 - 1, ' ');
+	loop(screenWidth / 2 - l / 2 - 1, ' ');
 
 	std::cout << "\\";
 
@@ -378,12 +379,12 @@ void UserData::printResult() {
 	std::string cgpa = "Your CGPA Is- ";
 
 	loop(3, '\n');
-	loop(w.ws_col / 2 - (40 / 2), ' ');
+	loop(screenWidth / 2 - (40 / 2), ' ');
 	loop(40, '-');
 
 	std::cout << "\n";
-	
-	loop(w.ws_col / 2 - (40 / 2), ' ');
+
+	loop(screenWidth / 2 - (40 / 2), ' ');
 
 	std::cout << "-" << termcolor::on_grey;
 
@@ -401,7 +402,7 @@ void UserData::printResult() {
 
 	std::cout << termcolor::reset << "-\n";
 
-	loop(w.ws_col / 2 - (40 / 2), ' ');
+	loop(screenWidth / 2 - (40 / 2), ' ');
 	loop(40, '-');
 
 	std::cout << "\n\n\n";
@@ -433,7 +434,7 @@ void UserData::menu() {
 
 			std::cout << ".";
 			std::cout.flush();
-			usleep(500000);
+			Sleep(500);
 		}
 
 		goto mainMenu;
@@ -455,7 +456,7 @@ void UserData::menu() {
 
 			case '3':
 
-				system("clear");
+				system("cls");
 				exit(EXIT_SUCCESS);
 				break;
 		}

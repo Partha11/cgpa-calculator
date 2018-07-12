@@ -1,7 +1,6 @@
 #ifndef DATA_H
 #define DATA_H
 
-#include <sys/ioctl.h>
 #include <cstdio>
 #include <string>
 
@@ -59,13 +58,12 @@ class UserData {
 
 private:
 
-	struct winsize w;
-
 	std::string userGrade;
 	double totalObtained;
 	double res;
 	int semester;
 	char choice;
+	int screenWidth;
 
 	enum grade {a_plus, a, a_minus, b_plus, b, b_minus, c_plus, c, d, f};
 
