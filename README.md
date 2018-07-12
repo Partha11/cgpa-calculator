@@ -1,15 +1,15 @@
 Cgpa Calculator
 ===============
 
-A command line cgpa calculator for the students of national university.
+A command line cgpa calculator for the students of national university. <br />
 
-Features:-
+Features:- <br /> <br />
 
-1.Subject List
-2.Improved Calculation Speed
-3.Colors Added
-4.Modified Codes for Windows
-5.Standalone Executable Added
-6.Icon Added
+1.Subject List <br />
+2.Improved Calculation Speed <br />
+3.Colors Added <br />
+4.Modified Codes for Windows <br />
+5.Standalone Executable Added <br />
+6.Icon Added <br />
 
-Thanks to ikalnytskyi for his termcolor
+Thanks to ikalnytskyi for his termcolor <br />
