@@ -12,4 +12,13 @@ Features:- <br /> <br />
 
 Just running the makefile would create an linux executable and it would run automatically.You can separate the executable from build/apps/ for future use. <br /> <br />
 
+Procedure:- <br /> <br />
+
+1.Open terminal <br />
+2.Type git clone https://github.com/Partha11/cgpa-calculator <br />
+3.Type cd cgpa-calculator <br />
+4.Type make all <br />
+
+and you're good to go <br />
+
 Thanks to ikalnytskyi for the termcolor header
