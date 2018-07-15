@@ -47,14 +47,6 @@ static const int subjectNumber[8] = {5, 5, 6, 5, 5, 5, 5, 4};
 static const int practicalNumber[8] = {1, 2, 3, 2, 1, 3, 2, 1};
 static const double grades[8] = {16.5, 18, 22.5, 18, 16.5, 19.5, 18, 13.5};
 
-const std::string blue("\033[1;36m");
-const std::string cyan("\033[1;34m");
-const std::string yellow("\033[1;33m");
-const std::string red("\033[1;42m");
-const std::string redb("\033[1;31m");
-const std::string magenta("\033[1;35m");
-const std::string reset("\033[0m");
-
 class UserData {
 
 private:
@@ -73,6 +65,7 @@ public:
 
 	UserData();
 	void welcome();
+	void aboutCalc();
 	void menu();
 	void printResult();
 	void subjectInput();

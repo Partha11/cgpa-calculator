@@ -295,7 +295,7 @@ void UserData::showSubjects() {
 
 	std::cout << "\n\n\n";
 	std::cin.ignore(1024, '\n');
-	std::cout << "Press any key to continue..";
+	std::cout << "Press enter key to continue..";
 	std::cin.get();
 
 	menu();
@@ -406,7 +406,7 @@ void UserData::printResult() {
 
 	std::cout << "\n\n\n";
 	std::cin.ignore(1024, '\n');
-	std::cout << "Press any key to continue..";
+	std::cout << "Press enter key to continue..";
 	std::cin.get();
 }
 
@@ -418,13 +418,14 @@ void UserData::menu() {
 
 	std::cout << termcolor::cyan << "1.Calculate CGPA" << termcolor::reset << std::endl;
 	std::cout << termcolor::yellow << "2.View Subjects" << termcolor::reset << std::endl;
-	std::cout << termcolor::red << "3.Quit" << termcolor::reset << std::endl;
+	std::cout << termcolor::yellow << "3.About" << termcolor::reset << std::endl;
+	std::cout << termcolor::red << "4.Quit" << termcolor::reset << std::endl;
 	std::cout << std::endl;
 	std::cout << termcolor::green << "Enter Selection: " << termcolor::reset;
 
 	std::cin >> choice;
 
-	if (choice < '1' || choice > '3') {
+	if (choice < '1' || choice > '4') {
 
 		std::cout << termcolor::red << "Invalid Selection!!" << termcolor::reset << std::endl;
 		std::cout << "Please Wait";
@@ -455,9 +456,82 @@ void UserData::menu() {
 
 			case '3':
 
+				aboutCalc();
+
+				break;
+
+			case '4':
+
 				system("clear");
 				exit(EXIT_SUCCESS);
 				break;
 		}
 	}
+}
+
+void UserData::aboutCalc() {
+
+	system("clear");
+	welcome();
+
+	std::string credits[5] = {"CGPA Calculator v2.1 alpha",
+							  "Coded By Partha",
+							  "For Any Suggestions/Help,",
+							  "Please Contact http://fb.com/abir.partha.5"};
+
+	int stringLength;
+
+	std::cout << "\n\n";
+
+	for (int i = 0, j = 0; i < 4; i++) {
+
+		stringLength = credits[i].length();
+
+		loop((w.ws_col / 2) - (stringLength / 2 + 1), ' ');
+
+		switch (i) {
+
+			case 0:
+
+				std::cout << termcolor::cyan;
+
+				break;
+
+			case 1:
+
+				std::cout << termcolor::green;
+
+				break;
+
+			case 2:
+
+				std::cout << termcolor::yellow;
+
+				break;
+
+			case 3:
+
+				std::cout << termcolor::red;
+
+				break;
+		}
+
+		for (int j = 0; j < credits[i].length(); j++) {
+
+			std::cout.flush();
+
+			std::cout << credits[i][j];
+			usleep(100000);
+		}
+
+		std::cout << termcolor::reset;
+		std::cout << "\n";
+	}
+
+	std::cout << "\n\n\n\n";
+	std::cin.ignore(1024, '\n');
+	std::cout << "Press enter key to continue..";
+	std::cin.get();
+
+	menu();
 }
