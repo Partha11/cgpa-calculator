@@ -20,5 +20,3 @@ Procedure:- <br /> <br />
 4.Type make all <br />
 
 and you're good to go <br />
-
-Thanks to ikalnytskyi for the termcolor header
